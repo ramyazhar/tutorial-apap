@@ -37,5 +37,43 @@ sebenarnya keduanya bisa digunakan untung meng-extract value dari request URI, n
 
 ### What I did not understand
 
--[]bagaimana implementasi maven sebenarnya dalam pengembangan proyek?
--[]apakah ada cara untuk mengextract data dari request uri selain @RequestParam / @PathVariable?
+-[v]bagaimana implementasi maven sebenarnya dalam pengembangan proyek?
+-[v]apakah ada cara untuk mengextract data dari request uri selain @RequestParam / @PathVariable?
+
+
+## Tutorial 2
+
+### What I have learned today
+dari tutorial ini saya menjadi lebih mengerti tentang service , model, dan controller.  Selain itu, saya juga belajar berbagai cara untuk mengambil data dari URL (path variable dan request param) dan saya juga belajar membuat method-method untuk add, update dan delete objek dengan menggunakan request mapping.
+
+### Pertanyaan
+1. Cobalah untuk menambahkan sebuah Hotel dengan mengakses link berikut:
+http://localhost:8080/hotel/add?idHotel=1&namaHotel=Papa%20APAP&alamat=Quanta%20Fasilkom
+&noTelepon=081xxx
+Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi?
+yang terjadi adalah error, karena saat membuka link tersebut, akan diarahkan kepada add-hotel.html , dimana saat pertanyaan ini ditanyakan si add-hotel.html ini belum dibuat.
+kalo udah dibuat add-hotel.html nya, nanti ga error.
+
+2.  Menurut kamu anotasi @Autowired pada class Controller tersebut merupakan
+implementasi dari konsep apa? Dan jelaskan secara singkat cara kerja @Autowired tersebut dalam
+konteks service dan controller yang telah kamu buat
+autowired pada class controller tersebut merupakan implementasi dari konsen dependency injection. 
+cara kerjanya adalah dependency interfacenya diinject otomatis via autowiring ke service yang mengimplementasi autowiring ini.
+
+
+3. Cobalah untuk menambahkan sebuah Hotel dengan mengakses link berikut:
+http://localhost:8080/hotel/add?idHotel=1&namaHotel=Papa%20APAP&alamat=Quanta%20Fasilkom
+Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi
+ERROR! , karena dari link yang diberikan parameternya gak lengkap, kurang parameter nomer telepon, karena atribut nomor telepon pada request param nya bernilai true, jadi mesti ada nomer teleponnya, tapi di link nya gada nomor teleponnya, jadinya kekurangan parameter, menyebabkan error.
+
+4. Jika Papa APAP ingin melihat Hotel dengan nama Papa APAP, link apa yang harus
+diakses?
+karena tadi kita mencoba membuat hotel papa APAP dengan idHotel = 1 .  maka tinggal mencari dengan akses link 
+http://localhost:8080/hotel/view/id-hotel/1
+
+5. Tambahkan 1 contoh Hotel lainnya sesukamu. Lalu cobalah untuk mengakses
+http://localhost:8080/hotel/viewall , apa yang akan ditampilkan? Sertakan juga bukti screenshotmu.
+saya tadi mencoba menambahkan lebih dari 1 hotel, alhasil tampilan dari http://localhost:8080/hotel/viewall adalah seluruh hotel yang sebelumnya saya tambahkan. berikut screenshoot nya https://ibb.co/R9PRBx8 
+
+
+### What I did not understand
