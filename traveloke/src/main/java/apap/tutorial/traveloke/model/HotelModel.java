@@ -24,34 +24,26 @@ public class HotelModel implements Serializable{
     @Column(name="alamat", nullable = false)
     private String alamat;
 
-    @NotNull
-    @Size(max=30)
     @Column(name="nomorTelepon", nullable = false)
-    private Integer nomorTelepon;
+    private @NotNull @Size(max = 30) String nomorTelepon;
 
     @OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<KamarModel> listKamar;
 
-    public HotelModel(
-            Long id,
-            @NotNull @Size(max = 30) String namaHotel,
-            @NotNull @Size(max = 30) String alamat,
-            @NotNull @Size(max = 30) Integer nomorTelepon,
-            List<KamarModel> listKamar) {
-        this.id = id;
-        this.namaHotel = namaHotel;
-        this.alamat = alamat;
-        this.nomorTelepon = nomorTelepon;
-        this.listKamar = listKamar;
-    }
+//    public HotelModel(
+//            Long id,
+//            @NotNull @Size(max = 30) String namaHotel,
+//            @NotNull @Size(max = 30) String alamat,
+//            @NotNull @Size(max = 30) String nomorTelepon,
+//            List<KamarModel> listKamar) {
+//        this.id = id;
+//        this.namaHotel = namaHotel;
+//        this.alamat = alamat;
+//        this.nomorTelepon = nomorTelepon;
+//        this.listKamar = listKamar;
+//    }
 
-    public HotelModel() {
-        this.id = id;
-        this.namaHotel = namaHotel;
-        this.alamat = alamat;
-        this.nomorTelepon = nomorTelepon;
-        this.listKamar = listKamar;
-    }
+
 
     public Long getId() {
         return id;
@@ -77,11 +69,11 @@ public class HotelModel implements Serializable{
         this.alamat = alamat;
     }
 
-    public Integer getNomorTelepon() {
+    public String getNomorTelepon() {
         return nomorTelepon;
     }
 
-    public void setNomorTelepon(Integer noTelepon) {
+    public void setNomorTelepon(String noTelepon) {
         this.nomorTelepon = noTelepon;
     }
 

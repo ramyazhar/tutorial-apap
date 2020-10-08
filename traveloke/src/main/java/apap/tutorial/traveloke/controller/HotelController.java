@@ -39,6 +39,15 @@ public class HotelController {
         model.addAttribute("idHotel", hotel.getId());
         return "add-hotel";
     }
+// URL Mapping yang digunakan untuk mengakses halaman add restoran
+//    @RequestMapping(value="/hotel/add", method=RequestMethod.GET)
+//    public String addHotelFormPage(Model model) {
+//    HotelModel hotelModel = new HotelModel();
+//    model.addAttribute("hotel", hotelModel());
+//    return "form-add-hotel";
+//}
+
+
 
     @GetMapping("/hotel/change/{idHotel}")
     public String changeHotelFormPage(
@@ -74,11 +83,10 @@ public class HotelController {
 
     @GetMapping("hotel/viewall")
     public String viewAllHotel(
-            @RequestParam(value = "idHotel") Long idHotel,
             Model model
     ){
-        List<HotelModel> hotel = hotelService.getHotelList();
-        model.addAttribute("hotel", hotel);
+        List<HotelModel> hotel = hotelService.findAllByOrderByIdDesc();
+        model.addAttribute("listHotel", hotel);
         return "viewall-hotel";
     }
 }

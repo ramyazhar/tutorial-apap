@@ -18,4 +18,6 @@ public interface HotelService {
     void deleteHotel (HotelModel hotel);
 
     HotelModel updateHotel(HotelModel hotel);
+
+    List<HotelModel> findAllByOrderByIdDesc();
 }
