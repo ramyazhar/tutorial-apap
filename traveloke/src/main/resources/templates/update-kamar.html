@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Data Kamar</title>
+</head>
+<body>
+<h2>Update data kamar berhasil! </h2>
+<h3 th:text="'No Kamar: '+ ${kamar.noKamar}"></h3>
+<h3 th:text="'Nama Kamar: '+ ${kamar.namaKamar}"></h3>
+<h3 th:if="${kamar.tipe == 0}">Tipe : Deluxe</h3>
+<h3 th:if="${kamar.tipe == 1}">Tipe : Executive</h3>
+<h3 th:if="${kamar.tipe == 2}">Tipe : President Suite</h3>
+<h3 th:text="'Kapasitas kamar: '+ ${kamar.kapasitasKamar}"></h3>
+<br><br>
+<a href="/">Kembali</a>
+</body>
+</html>

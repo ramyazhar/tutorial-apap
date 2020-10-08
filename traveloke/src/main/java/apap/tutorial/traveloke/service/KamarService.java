@@ -1,5 +1,6 @@
 package apap.tutorial.traveloke.service;
 
+import apap.tutorial.traveloke.model.HotelModel;
 import apap.tutorial.traveloke.model.KamarModel;
 
 import java.util.List;
@@ -9,4 +10,7 @@ public interface KamarService {
 
     List<KamarModel> findAllKamarByIdHotel(Long idHotel);
 
+    KamarModel updateKamar(KamarModel kamar);
+
+    KamarModel getKamarByNoKamar(Long noKamar);
 }

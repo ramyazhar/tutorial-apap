@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class KamarController {
@@ -22,7 +19,7 @@ public class KamarController {
     @Autowired
     private KamarService kamarService;
 
-    @GetMapping("/kamar/add/{idHote}")
+    @GetMapping("/kamar/add/{idHotel}")
     private String addKamarFormPage(
             @PathVariable Long idHotel,
             Model model
@@ -30,7 +27,7 @@ public class KamarController {
         KamarModel kamar = new KamarModel();
         HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
         kamar.setHotel(hotel);
-        model.addAttribute("kamar",kamar);
+        model.addAttribute("kamar", kamar);
 
         return "form-add-kamar";
     }
@@ -40,8 +37,38 @@ public class KamarController {
             @ModelAttribute KamarModel kamar,
             Model model
     ){
-        kamarService.addKamar( kamar);
+        kamarService.addKamar(kamar);
         model.addAttribute("kamar", kamar);
         return "add-kamar";
+    }
+
+
+//    @PostMapping("/kamar/change/")
+//    public String changeHotelFormSubmit(
+//            @ModelAttribute HotelModel hotel,
+//            Model model
+//    ){
+//        HotelModel hotelUpdated = hotelService.updateHotel(hotel);
+//        model.addAttribute("hotel", hotel);
+//        return "form-update-kamar";
+//    }
+    @RequestMapping(value="kamar/change/{noKamar}", method=RequestMethod.GET)
+    public String changeKamrFormPage(@PathVariable Long noKamar, Model model) {
+    KamarModel existingKamarModel = kamarService.getKamarByNoKamar(noKamar);
+    if (existingKamarModel == null) {
+        return "kamar-tidak-ada";
+    }
+    model.addAttribute("kamar", existingKamarModel);
+    return "form-update-kamar";
+}
+
+    @PostMapping("/kamar/change")
+    public String changeHotelFormSubmit(
+            @ModelAttribute KamarModel kamar,
+            Model model
+    ){
+        KamarModel kamarUpdated = kamarService.updateKamar(kamar);
+        model.addAttribute("kamar", kamarUpdated);
+        return "update-kamar";
     }
 }

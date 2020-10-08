@@ -19,7 +19,7 @@ public class KamarModel implements Serializable {
     @NotNull
     @Size(max=30)
     @Column(name="namaKamar", nullable = false)
-    private Integer namaKamar;
+    private String namaKamar;
 
     @NotNull
     @Column(name="tipe", nullable = false)
@@ -35,7 +35,7 @@ public class KamarModel implements Serializable {
     @JsonIgnore
     private HotelModel hotel;
 
-    public KamarModel(Long noKamar, @NotNull @Size(max = 30) Integer namaKamar, @NotNull Integer tipe, @NotNull Integer kapasitasKamar, HotelModel hotel) {
+    public KamarModel(Long noKamar, @NotNull @Size(max = 30) String namaKamar, @NotNull Integer tipe, @NotNull Integer kapasitasKamar, HotelModel hotel) {
         this.noKamar = noKamar;
         this.namaKamar = namaKamar;
         this.tipe = tipe;
@@ -58,11 +58,11 @@ public class KamarModel implements Serializable {
         this.noKamar = noKamar;
     }
 
-    public Integer getNamaKamar() {
+    public String getNamaKamar() {
         return namaKamar;
     }
 
-    public void setNamaKamar(Integer namaKamar) {
+    public void setNamaKamar(String namaKamar) {
         this.namaKamar = namaKamar;
     }
 
