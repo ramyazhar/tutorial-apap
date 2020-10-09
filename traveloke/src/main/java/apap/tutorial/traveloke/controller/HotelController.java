@@ -75,6 +75,9 @@ public class HotelController {
             Model model
     ){
         HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
+        if(hotel == null){
+            return "no-id-hotel";
+        }
         List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(idHotel);
         model.addAttribute("hotel", hotel);
         model.addAttribute("listKamar", listKamar);
@@ -92,7 +95,14 @@ public class HotelController {
 
     @RequestMapping(value="hotel/remove/{idHotel}", method=RequestMethod.GET)
     public String removeHotelByIdHotel(@PathVariable Long idHotel,@ModelAttribute HotelModel hotelModel, Model model){
+
+
         HotelModel existHotelModel = hotelService.getHotelByIdHotel(idHotel);
+
+        if(existHotelModel == null){
+            return "no-id-hotel";
+        }
+
         List<KamarModel> listKamar = existHotelModel.getListKamar();
 
         if(listKamar.size() != 0 ){

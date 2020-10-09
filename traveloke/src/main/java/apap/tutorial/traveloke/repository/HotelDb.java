@@ -13,5 +13,4 @@ public interface HotelDb extends JpaRepository<HotelModel,Long> {
     Optional<HotelModel> findById(Long Id);
     List<HotelModel> findAllByOrderByIdDesc();
     void delete(HotelModel hotel);
-//    List<KamarModel> getKamarListByIdHotel(Long idHotel);
 }
