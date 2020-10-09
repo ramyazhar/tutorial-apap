@@ -18,7 +18,11 @@
     <td> <a th:href="@{/hotel/remove/}+${hotel.id}"> Delete Hotel </a> </td>
 </section>
 <section>
-    <h2>Daftar Kamar:</h2>
+    <h3 th:if="${#lists.isEmpty(listKamar)}">Hotel belum memiliki kamar</h3>
+</section>
+<section>
+
+    <h2 th:unless="${#lists.isEmpty(listKamar)}">Daftar Kamar:</h2>
     <div th:each="kamar: ${listKamar}">
         <h3 th:text="'No Kamar: '+ ${kamar.noKamar}"></h3>
         <h3 th:text="'Nama Kamar: '+ ${kamar.namaKamar}"></h3>
