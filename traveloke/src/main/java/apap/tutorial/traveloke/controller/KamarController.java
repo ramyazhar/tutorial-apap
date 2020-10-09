@@ -73,7 +73,7 @@ public class KamarController {
         return "update-kamar";
     }
 
-    @GetMapping(value="/kamar/delete/{noKamar}")
+    @GetMapping(value="/kamar/remove/{noKamar}")
     public String removeKamarByNoKamar(@PathVariable Long noKamar,@ModelAttribute KamarModel kamarModel, Model model){
         KamarModel existKamarModel = kamarService.getKamarByNoKamar(noKamar);
         kamarService.removeKamar(existKamarModel);

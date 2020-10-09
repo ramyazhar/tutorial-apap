@@ -29,6 +29,8 @@
 
         <h3 th:text="'Kapasitar kamar: '+ ${kamar.kapasitasKamar}"></h3>
         <td><a th:href="@{/kamar/change/}+${kamar.noKamar}">Change Data Kamar</a></td>
+        <td><a th:href="@{/kamar/remove/}+${kamar.noKamar}">Remove Kamar</a></td>
+
     </div><br><br>
     <td><a th:href="@{/kamar/add/}+${hotel.id}">Add Kamar</a></td>
 </section>
