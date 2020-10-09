@@ -2,6 +2,7 @@ package apap.tutorial.traveloke.controller;
 
 import apap.tutorial.traveloke.model.HotelModel;
 import apap.tutorial.traveloke.model.KamarModel;
+import apap.tutorial.traveloke.repository.KamarDb;
 import apap.tutorial.traveloke.service.HotelService;
 import apap.tutorial.traveloke.service.KamarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,5 +71,13 @@ public class KamarController {
         KamarModel kamarUpdated = kamarService.updateKamar(kamar);
         model.addAttribute("kamar", kamarUpdated);
         return "update-kamar";
+    }
+
+    @GetMapping(value="/kamar/delete/{noKamar}")
+    public String removeKamarByNoKamar(@PathVariable Long noKamar,@ModelAttribute KamarModel kamarModel, Model model){
+        KamarModel existKamarModel = kamarService.getKamarByNoKamar(noKamar);
+        kamarService.removeKamar(existKamarModel);
+        return "remove-kamar-by-nokamar";
+
     }
 }
