@@ -77,3 +77,40 @@ saya tadi mencoba menambahkan lebih dari 1 hotel, alhasil tampilan dari http://l
 
 
 ### What I did not understand
+
+---
+## Tutorial 3
+
+### What I have learned today
+Pada tutorial-3 ini,  saya belajar tentang model, service dan controller. Selain itu, saya juga belajar membuat method-method untuk add, update dan delete obyek dengan menggunakan request mapping. saya juga belajar untuk membuat database menggunakan phpmysql, setelah membuat saya juga belajar untuk menghubungkan database-database terkait dan mengatur behavior dan relasinya. saya juga belajar menggunakan kondisional dalam HTML. yang paling seru adalah belajar menggunakan JPA repository, yang mana sangat membantu dalam mengakses data atau mengambil data. Lab ini sedikit mirip dengan lab 2 namun lebih menantang dan lebih banyak menemukan error.
+
+### PERTANYAAN
+1. **Pada class KamarDb, terdapat method findAllByHotelId, apakah kegunaan dari method tersebut?**
+Method findAllByHotelId berguna untuk mengambil kamar berdasarkan id hotel yang berasal dari hotel model dan akan dimasukan ke dalam sebuah list. Pengambilan data dilakukan dengan cara melakukan query ke database SQL. Method findBy itu sendiri merupakan bawaan dari JPA Repository yang berguna untuk mempermudah programmer dalam melakukan pengambilan data tanpa membuat querynya terlebih dahulu.
+
+2. **Pada class HotelController, jelaskan perbedaan method addHotelFormPage dan addHotelSubmit?**
+method addHotelFormPage menggunakan Request Method GET. GET digunakan untuk mendapatkan suatu data dari database. Fungsi dari addHotelFormPage adalah untuk mendapatkan restoran mana yang mau di ubah datanya. addHotelSubmit menggunakan Request Method POST. POST digunakan untuk mengubah suatu data pada database. Fungsi dari addHotelSubmit adalah untuk mengubah dan mensubmit perubahan yang dilakukan.
+
+3. **Jelaskan kegunaan dari JPA Repository!**
+JPA Repository adalah sebuah Object Relational Mapping (ORM) dari java spring. JPA Repository berguna untuk mempermudah programmer dalam mengakses data atau mengambil data karena JPA repository menyediakan segala fungsional tanpa harus membuat query.selain itu kegunaan dari JPA Repository adalah untuk menghubungkan database (mysql) dengan model. ORM juga berguna untuk melindungi dari serangan seperti SQL Injection.
+
+4. **Sebutkan dan jelaskan di bagian kode mana sebuah relasi antara HotelModel dan KamarModel dibuat?**
+- Bagian pada HotelModel yaitu
+   @OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL) 
+   private List<KamarModel> listKamar; 
+- Bagian pada KamarModel yaitu:
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "hotelId", referencedColumnName = "id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private HotelModel hotel;
+- Kedua kode tersebut akan menghubungkan relasi yang terjadi antara HotelModel dengan KamarModel. @OneToMany pada HotelModel menandakan bahwa setiap hotel dapat memiliki lebih dari satu kamar. @JoinColumn pada KamarHotel akan memiliki tambahan atribut yaitu hotelId yang me-referenced id dari HotelModel. mappedBy dengan value hotel menandakan hotel menjadi refrensi terhadap kamar.
+
+5. **Jelaskan kegunaan FetchType.LAZY, CascadeType.ALL, dan FetchType.EAGER!**
+- FetchType.LAZY merupakan salah satu tipe Hibernate yang tidak melakukan load untuk semua collection object child saat object parent di-fetch. Collection object child hanya di-load jika secara eksplisit dibutuhkan via getter method. Default fetching tipe ini adalah OnetoMany dan ManytoMany. 
+
+- CascadeType.ALL merupakan salah satu tipe Hibernate juga yang menyediakan property cascade pada hubungan OnetoMany untuk memudahkan kita dalam melakukan operasi database. Semua obyek yang berelasi dengan entitas yang dihapus juga akan ikut terhapus (seolah-olah entitas tersebut tidak pernah ada).
+
+- FetchType.EAGER merupakan salah satu tipe Hibernate, mendapat semua data dari suatu obyek/tabel termasuk data dari tabel yang berelasi dengan obyek/tabel Default fetching tipe ini adalah OnetoMany dan ManytoMany. Contoh implementasinya pada tutorial 3 ini adalah saat kita ingin melihat keseluruhan hotel, dimana pastinya akan secara bersamaan datanya semuanya diakses.
+
+### What I did not understand
