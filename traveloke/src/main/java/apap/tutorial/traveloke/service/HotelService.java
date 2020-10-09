@@ -15,9 +15,12 @@ public interface HotelService {
     // Method untuk mendapatkan data sebuah hotel berdasarkan Id
     HotelModel getHotelByIdHotel(Long idHotel);
 
-    void deleteHotel (HotelModel hotel);
+    void removeHotel (HotelModel hotel);
 
     HotelModel updateHotel(HotelModel hotel);
 
     List<HotelModel> findAllByOrderByIdDesc();
+
+//    List<KamarModel> getKamarListByIdHotel(Long idHotel);
+
 }

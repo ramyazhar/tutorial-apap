@@ -32,7 +32,8 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public void deleteHotel(HotelModel hotel) {
+    public void removeHotel(HotelModel hotel) {
+        hotelDb.delete(hotel);
     }
 
     @Override
@@ -55,4 +56,9 @@ public class HotelServiceImpl implements HotelService {
             return null;
         }
     }
+
+//    @Override
+//    public List<KamarModel> getKamarListByIdHotel(Long idHotel){
+//        return hotelDb.findById(idHotel).get().getListKamar();
+//    }
 }
