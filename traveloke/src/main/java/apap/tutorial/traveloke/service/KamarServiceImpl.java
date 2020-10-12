@@ -48,4 +48,13 @@ public class KamarServiceImpl implements KamarService{
     public void removeKamar(KamarModel kamar){
         kamarDb.delete(kamar);
     }
+
+//    @Override
+//    List<KamarModel> findAllByKamarModelByNamaKamarAndKapasitasKamar(String nama, Integer kapasitas){
+//        return kamarDb.getKamarModelsByNamaKamarAndKapasitasKamar(nama,kapasitas);
+//    }
+    @Override
+    List<KamarModel> getKamarByNamaKamarDanKapasitas(String nama, Integer kapasitas){
+        return kamarDb.findAllByNamaKamarAndKapasitasKamar(nama, kapasitas);
+    }
 }
