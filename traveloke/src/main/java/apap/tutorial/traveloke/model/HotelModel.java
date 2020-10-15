@@ -1,25 +1,56 @@
+
 package apap.tutorial.traveloke.model;
 
-public class HotelModel {
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.List;
 
-    private String idHotel;
+@Entity
+@Table(name="hotel")
+public class HotelModel implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotNull
+    @Size(max=30)
+    @Column(name="namaHotel", nullable = false)
     private String namaHotel;
+
+    @NotNull
+    @Size(max=30)
+    @Column(name="alamat", nullable = false)
     private String alamat;
-    private String noTelepon;
 
-    public HotelModel(String idHotel, String namaHotel, String alamat, String noTelepon) {
-        this.idHotel = idHotel;
-        this.namaHotel = namaHotel;
-        this.alamat = alamat;
-        this.noTelepon = noTelepon;
+    @Column(name="nomorTelepon", nullable = false)
+    private @NotNull @Size(max = 30) String nomorTelepon;
+
+    @OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<KamarModel> listKamar;
+
+//    public HotelModel(
+//            Long id,
+//            @NotNull @Size(max = 30) String namaHotel,
+//            @NotNull @Size(max = 30) String alamat,
+//            @NotNull @Size(max = 30) String nomorTelepon,
+//            List<KamarModel> listKamar) {
+//        this.id = id;
+//        this.namaHotel = namaHotel;
+//        this.alamat = alamat;
+//        this.nomorTelepon = nomorTelepon;
+//        this.listKamar = listKamar;
+//    }
+
+
+
+    public Long getId() {
+        return id;
     }
 
-    public String getIdHotel() {
-        return idHotel;
-    }
-
-    public void setIdHotel(String idHotel) {
-        this.idHotel = idHotel;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNamaHotel() {
@@ -38,12 +69,19 @@ public class HotelModel {
         this.alamat = alamat;
     }
 
-    public String getNoTelepon() {
-        return noTelepon;
+    public String getNomorTelepon() {
+        return nomorTelepon;
     }
 
-    public void setNoTelepon(String noTelepon) {
-        this.noTelepon = noTelepon;
+    public void setNomorTelepon(String noTelepon) {
+        this.nomorTelepon = noTelepon;
+    }
+
+    public List<KamarModel> getListKamar() {
+        return listKamar;
+    }
+
+    public void setListKamar(List<KamarModel> listKamar) {
+        this.listKamar = listKamar;
     }
 }
-

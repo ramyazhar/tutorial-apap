@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h2>Selamat Datang di Traveloke!</h2>
+<h3>Tambah Hotel</h3>
+<td><a th:href="@{/hotel/add}"> Tambah Hotel</a></td>
+<td><a th:href="@{/hotel/viewall}"> View All</a></td>
+<h3> Cari Hotel Berdasarkan ID</h3>
+<form th:action="@{/hotel/view}" method = "GET">
+    Id Hotel: <br>
+    <input type="text" name="idHotel"/>
+    <button type="submit">Cari</button>
+
+</form>
+</body>
+</html>

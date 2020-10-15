@@ -1,137 +1,118 @@
 package apap.tutorial.traveloke.controller;
 
 import apap.tutorial.traveloke.model.HotelModel;
+import apap.tutorial.traveloke.model.KamarModel;
 import apap.tutorial.traveloke.service.HotelService;
+import apap.tutorial.traveloke.service.KamarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
+
 @Controller
 public class HotelController {
+    @Qualifier("hotelServiceImpl")
     @Autowired
     private HotelService hotelService;
 
-    //routing url yang diinginkan
-    @RequestMapping("/hotel/add")
-    public String addHotel(
-            //request param yang ingin dibawa
-            @RequestParam(value= "idHotel", required = true) String idHotel,
-            @RequestParam(value= "namaHotel", required = true) String namaHotel,
-            @RequestParam(value= "alamat", required = true) String alamat,
-            @RequestParam(value= "noTelepon", required = true) String noTelepon,
+    @Autowired
+    private KamarService kamarService;
+
+    @GetMapping("/")
+    private String home() {
+        return "home";
+    }
+
+    @GetMapping("/hotel/add")
+    public String addHotelFormPage(Model model) {
+        model.addAttribute("hotel", new HotelModel());
+        return "form-add-hotel";
+    }
+
+    @PostMapping("/hotel/add")
+    public String addHotelSubmit(
+            @ModelAttribute HotelModel hotel,
+            Model model) {
+        hotelService.addHotel(hotel);
+        model.addAttribute("idHotel", hotel.getId());
+        return "add-hotel";
+    }
+// URL Mapping yang digunakan untuk mengakses halaman add restoran
+//    @RequestMapping(value="/hotel/add", method=RequestMethod.GET)
+//    public String addHotelFormPage(Model model) {
+//    HotelModel hotelModel = new HotelModel();
+//    model.addAttribute("hotel", hotelModel());
+//    return "form-add-hotel";
+//}
+
+
+
+    @GetMapping("/hotel/change/{idHotel}")
+    public String changeHotelFormPage(
+            @PathVariable Long idHotel,
             Model model
     ){
-
-        //membuat objek hotelmodel
-        HotelModel hotel = new HotelModel(idHotel, namaHotel, alamat, noTelepon);
-
-        //memanggil service addhotel
-        hotelService.addHotel(hotel);
-
-        // add variabel id hotel ke 'idhotel' untuk dirender dalam thymeleaf
-        model.addAttribute("idHotel", idHotel);
-
-        //return view template yang digunakan
-        return "add-hotel";
-
-    }
-    @RequestMapping("/hotel/viewall")
-    public String listHotel(Model model){
-
-        //mendapatkan semua HotelModel
-        List<HotelModel> listHotel = hotelService.getHotelList();
-
-        //add variabel semua hotel model ke listhotel untuk dirender pada thymeleaf
-        model.addAttribute("listHotel", listHotel);
-
-        // Return view template yang diinginkan
-        return  "viewall-hotel";
-    }
-    @RequestMapping("/hotel/view")
-    public String detailHotel(
-            @RequestParam(value= "idHotel") String idHotel,
-            Model model){
-
-        //mendapatkan Hotelmodel sesuai dengan idhotel
         HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
-
-        //cek keberadaan hotelnya duls gann
-        if(hotel == null){
-            return "no-hotel";
-        }
-
-        //add variabel hotel model ke hotel untuk dirender pada thymeleaf
-        model.addAttribute("hotel",hotel);
-        return "view-hotel";
+        model.addAttribute("hotel", hotel);
+        return "form-update-hotel";
     }
 
-    @RequestMapping("hotel/view/id-hotel/{idHotel}")
-    public String viewHotelWithPathVariable(
-            @PathVariable(value = "idHotel") String idHotel,
-            Model model){
-
-        //mendapatkan hotel model sesuai dengan idhotel
-        HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
-
-        //cek keberadaan hotelnya duls gann
-        if(hotel == null){
-            return "no-hotel";
-        }
-
-        //add variabel hotel model ke hotel untuk dirender pada thymeleaf
-        model.addAttribute("hotel",hotel);
-        return "view-hotel";
-    }
-
-    @RequestMapping("hotel/update/id-hotel/{idHotel}/no-telepon/{nomor}")
-    public String updateNomorHotelWithPathVariable(
-
-               //     http://localhost:8080/hotel/update/id-hotel/1/no-telepon/021752xxxx
-            @PathVariable(value = "idHotel") String idHotel,
-            @PathVariable(value = "nomor") String nomor,
-            Model model){
-        //mendapatkan hotel model sesuai dengan idhotel
-        HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
-
-
-        //cek keberadaan hotelnya duls gann
-        if(hotel==null){
-            return "no-hotel";
-        }
-
-        //set nomornya sesuai di url
-        hotel.setNoTelepon(nomor);
-
-        //add variabel hotel model ke hotel untuk dirender pada thymeleaf
-        model.addAttribute("hotel",hotel);
-
+    @PostMapping("/hotel/change")
+    public String changeHotelFormSubmit(
+            @ModelAttribute HotelModel hotel,
+            Model model
+    ){
+        HotelModel hotelUpdated = hotelService.updateHotel(hotel);
+        model.addAttribute("hotel", hotel);
         return "update-hotel";
     }
-    @RequestMapping("hotel/delete/id-hotel/{idHotel}")
-    //http://localhost:8080/hotel/delete/id-hotel/1.
-    public String deleteHotelWithPathVariable(
-            @PathVariable(value = "idHotel") String idHotel,
-            Model model){
 
-        //mendapatkan hotel model sesuai dengan idhotel
+    @GetMapping("hotel/view")
+    public String viewDetailHotel(
+            @RequestParam(value = "idHotel") Long idHotel,
+            Model model
+    ){
         HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
-
-        //cek keberadaan hotelnya duls gann
         if(hotel == null){
-            return "no-hotel";
+            return "no-id-hotel";
         }
-
-        //hapus hotelnya duls lach
-        hotelService.removeHotel(hotel);
-
-        //add variabel hotel model ke hotel untuk dirender pada thymeleaf
-        model.addAttribute("hotel",hotel);
-        return "delete-hotel";
+        List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(idHotel);
+        model.addAttribute("hotel", hotel);
+        model.addAttribute("listKamar", listKamar);
+        return "view-hotel";
     }
 
+    @GetMapping("hotel/viewall")
+    public String viewAllHotel(
+            Model model
+    ){
+        List<HotelModel> hotel = hotelService.findAllByOrderByIdDesc();
+        model.addAttribute("listHotel", hotel);
+        return "viewall-hotel";
+    }
 
+    @RequestMapping(value="hotel/remove/{idHotel}", method=RequestMethod.GET)
+    public String removeHotelByIdHotel(@PathVariable Long idHotel,@ModelAttribute HotelModel hotelModel, Model model){
+
+
+        HotelModel existHotelModel = hotelService.getHotelByIdHotel(idHotel);
+
+        if(existHotelModel == null){
+            return "no-id-hotel";
+        }
+
+        List<KamarModel> listKamar = existHotelModel.getListKamar();
+
+        if(listKamar.size() != 0 ){
+
+            return "remove-hotel-gagal";
+
+        }else {
+            hotelService.removeHotel(existHotelModel);
+            return "remove-hotel-berhasil";
+        }
+
+    }
 }
