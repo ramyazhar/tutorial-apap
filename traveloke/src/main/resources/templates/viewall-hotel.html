@@ -8,7 +8,9 @@
 </head>
 <body>
 <nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container">
 <h2>Daftar Seluruh Hotel</h2>
+
 <table class="table">
     <thead>
     <tr>
@@ -28,18 +30,20 @@
         <td th:text="${hotel.namaHotel}"></td>
         <td th:text="${hotel.alamat}"></td>
         <td th:text="${hotel.nomorTelepon}"></td>
-        <td><a th:href="@{/hotel/view?idHotel=}+${hotel.id}">View Hotel</a></td>
-        <a th:href="@{/hotel/change/}+${hotel.id}">Change Data Hotel</a></td>
-        <a th:href="@{/hotel/remove/}+${hotel.id}">Delete Hotel</a>
+        <td><a th:href="@{/hotel/view?idHotel=}+${hotel.id}" class="btn btn-outline-info">View</a></td>
+        <td><a th:href="@{/hotel/change/}+${hotel.id}" class="btn btn-outline-secondary">Change Data</a></td>
+        <td><a th:href="@{/hotel/remove/}+${hotel.id}" class="btn btn-outline-danger">Delete</a></td>
+<!--        <td>-->
+<!--            <tr><a >View Hotel</a></tr>-->
+<!--    <tr><a >Change Data Hotel</a></tr>-->
+<!--    <tr><a >Delete Hotel</a></tr>-->
 
-        <button type="button" class="btn btn-outline-info">Info</button>
-        <button type="button" class="btn btn-outline-secondary">Secondary</button>
-        <button type="button" class="btn btn-outline-danger">Danger</button>
-        </td>
+<!--        </td>-->
 
     </tr>
     </tbody>
 </table>
+
 <!--<div th:each="hotel: ${listHotel}">-->
 <!--    <h3 th:text="'Id Hotel: '+ ${hotel.id}"></h3>-->
 <!--    <h3 th:text="'Nama Hotel: '+ ${hotel.namaHotel}"></h3>-->
@@ -48,5 +52,6 @@
 <!--</div>-->
 <br><br>
 <a href="/">Kembali</a>
+</div>
 </body>
 </html>
