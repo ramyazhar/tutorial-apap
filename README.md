@@ -114,3 +114,29 @@ JPA Repository adalah sebuah Object Relational Mapping (ORM) dari java spring. J
 - FetchType.EAGER merupakan salah satu tipe Hibernate, mendapat semua data dari suatu obyek/tabel termasuk data dari tabel yang berelasi dengan obyek/tabel Default fetching tipe ini adalah OnetoMany dan ManytoMany. Contoh implementasinya pada tutorial 3 ini adalah saat kita ingin melihat keseluruhan hotel, dimana pastinya akan secara bersamaan datanya semuanya diakses.
 
 ### What I did not understand
+
+---
+## Tutorial 3
+
+### What I have learned today
+Pada tutorial-4 ini,  saya belajar lebih lanjut mengenai thymeleaf, saya belajar untuk bisa mengefisienkan penggunaan navbar dengan fragments. saya juga belajar cara menghias web lebih baik seperti saat mata kuliah ppw. saat membuat navbar juga saya belajar agar bisa membuat navbar tersebut menjadi dinamis. lab ini lebih seru daripada lab sebelumnya karena apa yang kita coding bisa langsung terlihat nyata dan menyenangkan. 
+
+### PERTANYAAN
+1. **Jelaskan perbedaan th:include dan th:replace!**
+th:include berati akan memasukkan konten yang ada di fragments kedalam tag hostnya.sedangkan th:replace berfungsi untuk mengganti tag host dengan fragmen yang berarti menghapus tag host dan sebagai pengganti tag host, itu akan menambahkan fragmen yang ditentukan termasuk tag fragmen.
+
+2. **Jelaskan apa fungsi dari th:object!**
+th:object digunakan untuk submit pada form sehingga mengetahui object apa yang di submit. Th:object juga digunakan untuk menentukan object mana yang akan diisi.
+
+3. **Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?**
+ *= akan mengevaluasi atribut atau varible dari th:object yang sudah di deklarasi sebelumnya
+ $= akan mengevaluasi keseluruhan atribut atau variabel pada th:object
+
+4. **Bagaimana kamu menyelesaikan latihan nomor 3?**
+yang saya pelajari adalah Fragment dapat bersifat dynamic. Cara saya menyelesaikan nomor 3 adalah dengan menambahkan
+
+th:text="${brand}"
+
+yang bertujuan untuk menulis title navbar nya. Brand sendiri value nya di set dan di ambil dari html terkait.
+
+### What I did not understand
