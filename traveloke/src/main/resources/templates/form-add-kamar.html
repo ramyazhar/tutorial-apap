@@ -1,28 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://thymeleaf.org">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Form Add Kamar</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<h3>Tambah Kamar</h3>-->
-<!--<form th:action="@{/kamar/add}"th:object="${kamar}" method = "POST">-->
-<!--    Nama Kamar : <br>-->
-<!--    <input type="text" name="namaKamar"/>-->
-<!--    <br><br>-->
-<!--    Tipe Kamar : <br>-->
-<!--    <select name="tipe">-->
-<!--        <option value="0">Deluxe</option>-->
-<!--        <option value="1">Executive</option>-->
-<!--        <option value="2">Presidet Suite</option>-->
-<!--    </select>-->
-<!--    Kapasitas Kamar : <br>-->
-<!--    <input type="number" name="kapasitasKamar"/>-->
-<!--    <br>-->
-<!--    <button type="submit">SUbmit</button>-->
-<!--</form>-->
-<!--</body>-->
-<!--</html>-->
 
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaaf.org">
@@ -55,7 +30,7 @@
             <td>
                 <select th:field="*{listKamar[__${iterationStatus.index}__].tipe}">
                     <option value="0">Deluxe</option>
-                    <option value="1">Execution</option>
+                    <option value="1">Executive</option>
                     <option value="2">President Suite</option>
                 </select>
             </td>
@@ -71,21 +46,3 @@
 </form>
 </body>
 </html>
-
-<!--<form th:action="@{/kamar/add}" th:object="${kamar}" method = "POST">-->
-<!--    <input type="hidden" th:field="*{hotel}"/>-->
-<!--    Nama Kamar: <br>-->
-<!--    <input type="text" name="namaKamar"/>-->
-<!--    <br>-->
-<!--    Tipe Kamar : <br>-->
-<!--    <select name="tipe">-->
-<!--        <option value="0">Deluxe</option>-->
-<!--        <option value="1">Execution</option>-->
-<!--        <option value="2">President Suite</option>-->
-<!--    </select>-->
-<!--    <br>-->
-<!--    Kapasitas Kamar : <br>-->
-<!--    <input type="number" name = "kapasitasKamar"/>-->
-<!--    <br>-->
-<!--    <button type = "submit">Submit</button>-->
-<!--</form>-->
