@@ -80,4 +80,17 @@ public class KamarController {
         return "remove-kamar-by-nokamar";
 
     }
+    @PostMapping(path = "/kamar/delete")
+    public String deleteKamarFormSubmit(
+            @ModelAttribute HotelModel hotel,
+            Model model
+    ){
+        model.addAttribute("kamarCount", hotel.getListKamar().size());
+
+        for(KamarModel kamar : hotel.getListKamar()){
+            kamarService.removeKamar(kamar);
+        }
+
+        return "delete-kamar";
+    }
 }
