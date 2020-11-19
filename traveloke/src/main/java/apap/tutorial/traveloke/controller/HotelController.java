@@ -39,13 +39,6 @@ public class HotelController {
         model.addAttribute("idHotel", hotel.getId());
         return "add-hotel";
     }
-// URL Mapping yang digunakan untuk mengakses halaman add restoran
-//    @RequestMapping(value="/hotel/add", method=RequestMethod.GET)
-//    public String addHotelFormPage(Model model) {
-//    HotelModel hotelModel = new HotelModel();
-//    model.addAttribute("hotel", hotelModel());
-//    return "form-add-hotel";
-//}
 
 
 
