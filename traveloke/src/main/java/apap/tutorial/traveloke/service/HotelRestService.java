@@ -20,4 +20,5 @@ public interface HotelRestService {
     Mono<String> getStatus(Long idHotel);
     Mono<HotelDetail> postStatus();
 
+    Mono<String> getHotelApiList(String kota);
 }

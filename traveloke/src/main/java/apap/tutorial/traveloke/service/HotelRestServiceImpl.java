@@ -82,4 +82,25 @@ public class HotelRestServiceImpl implements HotelRestService{
                 .retrieve()
                 .bodyToMono(HotelDetail.class);
     }
+
+    @Override
+    public Mono<String> getHotelApiList(String kota){
+        WebClient webClient1 = WebClient.builder().baseUrl(Setting.apiUrl).build();
+        return webClient1.get().uri(uriBuilder -> uriBuilder.queryParam("locale", "en_US").queryParam("query", kota).build())
+                .header("x-rapidapi-key", "7c26045138msh360d9e3696f7c58p147a5fjsn1d679e30be8c")
+                .header("x-rapidapi-host", "hotels-com-free.p.rapidapi.com")
+                .header("useQueryString", "true")
+                .retrieve().bodyToMono(String.class);
+    }
+
+
+//    @Override
+//    public Mono<String> getHotelApiList(String kota) {
+//        return this.webClient.post().uri(uriBuilder -> uriBuilder.queryParam("locale", "en_US").queryParam("query",kota).build())
+//                .header("x-rapidapi-key", "7c26045138msh360d9e3696f7c58p147a5fjsn1d679e30be8c")
+//                .header("x-rapidapi-host", "hotels-com-free.p.rapidapi.com")
+//                .header("useQueryString","true")
+//                .retrieve()
+//                .bodyToMono(String.class);
+//    }
 }

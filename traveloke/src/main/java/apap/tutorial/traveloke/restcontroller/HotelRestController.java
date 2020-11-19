@@ -88,4 +88,10 @@ public class HotelRestController {
     private Mono<HotelDetail> postStatus() {
         return hotelRestService.postStatus();
     }
+
+    @GetMapping(value = "/hotel/find")
+    private Mono<String> hotelApiList(@RequestParam String cityName){
+        String fixname = cityName.replace("-"," ");
+        return hotelRestService.getHotelApiList(fixname);
+    }
 }
