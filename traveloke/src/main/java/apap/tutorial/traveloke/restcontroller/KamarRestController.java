@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -45,6 +46,24 @@ public class KamarRestController {
             );
         }
     }
+
+    @GetMapping(value = "/kamar/{id}")
+    private KamarModel retrieveKamar(@PathVariable("id") Long id) {
+        try {
+            return kamarRestService.getKamarByIdKamar(id);
+        } catch (NoSuchElementException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "ID hotel " + String.valueOf(id) + " Not Found"
+            );
+        }
+    }
+
+    @GetMapping(value = "/kamar-all")
+    private List<KamarModel> retrieveListKamar() {
+        return kamarRestService.retrieveListKamar();
+    }
+
+
 
 
 }
