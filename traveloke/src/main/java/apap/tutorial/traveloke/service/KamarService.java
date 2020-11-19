@@ -15,4 +15,5 @@ public interface KamarService {
     KamarModel getKamarByNoKamar(Long noKamar);
 
     void removeKamar(KamarModel kamar);
+
 }

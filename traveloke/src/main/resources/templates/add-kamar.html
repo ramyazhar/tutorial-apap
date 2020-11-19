@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Kamar</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
+<nav th:replace="fragments/fragment :: navbar (brand='add kamar')"></nav>
 <h2 th:text="'kamar  berhasil ditambahkan sob.'"></h2>
 <a href="/hotel/viewall">Kembali</a>
 </body>

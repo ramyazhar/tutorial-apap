@@ -3,16 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>View All Hotel</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
+<nav th:replace="fragments/fragment :: navbar (brand='View All Hotel')"></nav>
+<div class="container">
 <h2>Daftar Seluruh Hotel</h2>
-<div th:each="hotel: ${listHotel}">
-    <h3 th:text="'Id Hotel: '+ ${hotel.id}"></h3>
-    <h3 th:text="'Nama Hotel: '+ ${hotel.namaHotel}"></h3>
-    <h3 th:text="'Alamat Hotel: '+ ${hotel.alamat}"></h3>
-    <h3 th:text="'Nomor Telepon: '+ ${hotel.nomorTelepon}"></h3>
-</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>No</th>
+        <th>Id Hotel</th>
+        <th>Nama Hotel</th>
+        <th>alamat Hotel</th>
+        <th>Nomor Telepon</th>
+        <th>Aksi</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="hotel, iterationStatus : ${listHotel}">
+        <td th:text="${iterationStatus.count}"></td>
+        <td th:text="${hotel.id}"></td>
+        <td th:text="${hotel.namaHotel}"></td>
+        <td th:text="${hotel.alamat}"></td>
+        <td th:text="${hotel.nomorTelepon}"></td>
+        <td><a th:href="@{/hotel/view?idHotel=}+${hotel.id}" class="btn btn-outline-info">View</a></td>
+        <td><a th:href="@{/hotel/change/}+${hotel.id}" class="btn btn-outline-secondary">Change Data</a></td>
+        <td><a th:href="@{/hotel/remove/}+${hotel.id}" class="btn btn-outline-danger">Delete</a></td>
+<!--        <td>-->
+<!--            <tr><a >View Hotel</a></tr>-->
+<!--    <tr><a >Change Data Hotel</a></tr>-->
+<!--    <tr><a >Delete Hotel</a></tr>-->
+
+<!--        </td>-->
+
+    </tr>
+    </tbody>
+</table>
+
+<!--<div th:each="hotel: ${listHotel}">-->
+<!--    <h3 th:text="'Id Hotel: '+ ${hotel.id}"></h3>-->
+<!--    <h3 th:text="'Nama Hotel: '+ ${hotel.namaHotel}"></h3>-->
+<!--    <h3 th:text="'Alamat Hotel: '+ ${hotel.alamat}"></h3>-->
+<!--    <h3 th:text="'Nomor Telepon: '+ ${hotel.nomorTelepon}"></h3>-->
+<!--</div>-->
 <br><br>
 <a href="/">Kembali</a>
+</div>
 </body>
 </html>

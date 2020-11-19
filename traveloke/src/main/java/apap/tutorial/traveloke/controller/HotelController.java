@@ -69,20 +69,24 @@ public class HotelController {
         return "update-hotel";
     }
 
-    @GetMapping("hotel/view")
+    @GetMapping("/hotel/view")
     public String viewDetailHotel(
             @RequestParam(value = "idHotel") Long idHotel,
             Model model
     ){
         HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
-        if(hotel == null){
-            return "no-id-hotel";
-        }
         List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(idHotel);
+        System.out.println(listKamar);
+        for (int i = 0; i < listKamar.size(); i++) {
+            System.out.println(listKamar.get(i).getNamaKamar());
+        }
+        boolean hasKamar = listKamar.size() > 0;
+        model.addAttribute("hasKamar", hasKamar);
         model.addAttribute("hotel", hotel);
         model.addAttribute("listKamar", listKamar);
         return "view-hotel";
     }
+
 
     @GetMapping("hotel/viewall")
     public String viewAllHotel(
