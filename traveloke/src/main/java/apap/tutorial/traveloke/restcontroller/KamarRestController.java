@@ -6,6 +6,7 @@ import apap.tutorial.traveloke.model.KamarModel;
 import apap.tutorial.traveloke.service.KamarRestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -61,6 +62,17 @@ public class KamarRestController {
     @GetMapping(value = "/kamar-all")
     private List<KamarModel> retrieveListKamar() {
         return kamarRestService.retrieveListKamar();
+    }
+
+    @DeleteMapping(value = "/kamar/{id}")
+    private ResponseEntity<String> deleteHotel(@PathVariable("id") Long id){
+        try{
+            kamarRestService.deleteKamar(id);
+            return ResponseEntity.ok("Kamar has been  Deleted!");
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Kamar with ID "+ String.valueOf(id)+ " Not Found!");
+        }
     }
 
 

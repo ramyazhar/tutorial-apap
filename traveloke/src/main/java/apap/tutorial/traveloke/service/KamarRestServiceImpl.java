@@ -1,6 +1,7 @@
 package apap.tutorial.traveloke.service;
 
 
+import apap.tutorial.traveloke.model.HotelModel;
 import apap.tutorial.traveloke.model.KamarModel;
 import apap.tutorial.traveloke.repository.KamarDb;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,4 +47,16 @@ public class KamarRestServiceImpl implements KamarRestService{
     public List<KamarModel> retrieveListKamar() {
         return kamarDb.findAll();
     }
+
+    @Override
+    public void deleteKamar(Long id) {
+        KamarModel kamar = getKamarByIdKamar(id);
+//        if(kamar != null){
+            kamarDb.delete(kamar);
+//        }else {
+//            throw new UnsupportedOperationException();
+//        }
+    }
+
+
 }

@@ -12,4 +12,6 @@ public interface KamarRestService {
     KamarModel changeKamar(Long id, KamarModel kamar);
 
     List<KamarModel> retrieveListKamar();
+
+    void deleteKamar(Long id);
 }
