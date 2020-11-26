@@ -116,7 +116,7 @@ JPA Repository adalah sebuah Object Relational Mapping (ORM) dari java spring. J
 ### What I did not understand
 
 ---
-## Tutorial 3
+## Tutorial 4
 
 ### What I have learned today
 Pada tutorial-4 ini,  saya belajar lebih lanjut mengenai thymeleaf, saya belajar untuk bisa mengefisienkan penggunaan navbar dengan fragments. saya juga belajar cara menghias web lebih baik seperti saat mata kuliah ppw. saat membuat navbar juga saya belajar agar bisa membuat navbar tersebut menjadi dinamis. lab ini lebih seru daripada lab sebelumnya karena apa yang kita coding bisa langsung terlihat nyata dan menyenangkan. 
@@ -140,3 +140,25 @@ th:text="${brand}"
 yang bertujuan untuk menulis title navbar nya. Brand sendiri value nya di set dan di ambil dari html terkait.
 
 ### What I did not understand
+
+---
+## Tutorial 5
+
+### What I have learned today
+Pada tutorial-5 ini, saya belajar lebih lanjut mengenai webservice, saya belajar untuk bisamenggunakan restservice dan restcontroler. saya juga belajar cara menggunakan API dari suatu web.
+
+### PERTANYAAN
+1. **Apa itu Postman? Apa kegunaannya?**
+- Postman merupakan sebuah aplikasi (plugin) untuk browser chrome sebagai REST Client. Aplikasi ini berguna untuk melakukan uji coba REST API yang telah dibuat.
+- tool Postman merupakan salahsatu tool wajib yang digunakan developer yang berkutat pada pembuatan API sebab fungsi utamanya adalah sebagai GUI API Caller. Namun sekarang postman juga menyadiakan fitur lain seperti Sharing Collection API for Documentation (free), Testing API (free), Realtime Collaboration Team (paid), Monitoring API (paid), Integration (paid).
+2. **Apa kegunaan dari annotation @JsonIgnoreProperties dan @JsonProperty?**
+- @JsonIgnoreProperties digunakan untuk menekan serialisasi properti atau mengabaikan pemrosesan properti JSON yang dibaca saat deserialisasi.eserialization JSON. Hal ini dapat memudahkan kita untuk panggilan REST dan menghasilkan objek domain. 
+- @JsonProperty is used to map property names with JSON keys during serialization and deserialization. By default, if you try to serialize a POJO, the generated JSON will have keys mapped to the fields of the POJO. If you want to override this behavior, you can use the @JsonProperty annotation on the fields.
+3. **Apa kegunaan attribut WebClient?**
+- webclient digunakan untuk restserviceimpl yang digunakan untuk mengirim serta menerima data dari resource URI. akses diberikan pada webrequest class/
+4. **Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?**
+- ResponseEntity berguna untuk mewakili seluruh respons HTTP dan berguna untuk mengikonfigurasi response HTTP secara keseluruhan. 
+- BindingResult biasanya berisikan informasi mengenai kesalahan, misalkan field yang diperlukan, adanya ketidakcocokan jenis atau kesalahan dalam melakukan pemanggilan method.
+
+### What I did not understand
+
