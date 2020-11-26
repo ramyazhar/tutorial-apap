@@ -50,5 +50,23 @@ public class UserController {
         model.addAttribute("user", user);
         return "redirect:/";
     }
+
+    @RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
+    public String changePassword(@ModelAttribute UserModel userModel, String newPassword, String confPassword, Model model){
+        UserModel myUser = userService.findUserbyUsername(userModel.getUsername());
+
+        if (userService.isMatch(userModel.getPassword(), myUser.getPassword() )){
+            if (newPassword.equals(confPassword)){
+                userService.setPassword(myUser, newPassword);
+                userService.addUser(myUser);
+                model.addAttribute("message", "password berhasil diubah");
+            }else {
+                model.addAttribute("message", "password tidak sama");
+            }
+        }else {
+            model.addAttribute("message", "password salah");
+        }
+        return "home";
+    }
 }
 
