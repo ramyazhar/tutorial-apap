@@ -162,3 +162,31 @@ Pada tutorial-5 ini, saya belajar lebih lanjut mengenai webservice, saya belajar
 
 ### What I did not understand
 
+
+---
+## Tutorial 6
+
+### What I have learned today
+Pada tutorial-6 ini saya belajar bagaimana cara membuat user, dengan username dan pasword, saya juga belajar bagaimana memberi akses spesial kepada role-role tertentu.
+
+### PERTANYAAN
+1. **Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?** 
+
+- Otentikasi verifikasi apakah seseorang itu adalah proses memeriksa detail pengguna untuk mengidentifikasinya dan memberikan akses ke sistem. Biasanya melibatkan username dan password. Sedangkan otorisasi adalah proses memeriksa hak atau izin pengguna yang diotentikasi untuk mengakses sistem bagian spesifik.
+- Berikut merupakan contoh implementasi otentifikasi pada class `WebSecurityConfig`:
+@Autowired
+    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{auth.userDetailsService(userDetailsService).passwordEncode(encoder());}
+
+- Berikut merupakan contoh implementasi otorisasi pada class `WebSecurityConfig`:
+.authorizeRequests()
+.antMatchers("/css/**").permitAll()
+.antMatchers("/js/**").permitAll()
+.antMatchers("/hotel/**").hasAuthority("RECEPTIONIST")
+.antMatchers("/user/addUser").hasAuthority("ADMIN")
+.antMatchers("/kamar/add/**").hasAuthority("RECEPTIONIST")
+2. **Apa itu BCryptPasswordEncoder? Jelaskan secara singkat cara kerjanya!**
+- BCryptPasswordEncoder adalah fungsi hashing untuk mengenkripsi sehingga password tidak diketahui walaupun sudah dilihat di databse. BCryptPasswordEncoder meng encrypt String Raw menjadi String yang sudah di acak agar tidak mudah diketahui.
+3. **Jelaskan secara singkat apa itu UUID beserta penggunaannya!** 
+- universally unique identifier (UUID) adalah digunakan untuk mengidentifikasi secara unik beberapa objek atau entitas di Internet. Bergantung pada mekanisme spesifik yang digunakan, UUID dijamin berbeda atau, paling tidak, sangat mungkin berbeda dari UUID lain yang ada. UUID digunakan untuk meningkatkan keamanan data pengguna dikarenakan id pengguna akan digenerate secara unik dengan hashing sebanyak 32 karakter secara acak sehingga id pengguna aman dan tidak mudah untuk diretas. 
+4. **Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserRoleServiceImpl.java?**
+- UserDetailsService adalah antarmuka inti dalam kerangka kerja Spring Security, yang digunakan untuk mengambil informasi otentikasi dan otorisasi pengguna. Ini memiliki metode baca-saja tunggal bernama loadUserByUsername() yang mencari pengguna berdasarkan nama pengguna.
