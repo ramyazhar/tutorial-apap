@@ -1,6 +1,7 @@
 import React from "react";
 
 import List from "components/List";
+import Emptystate from "./components/EmptyState";
 import listMovies from "movies.json";
 import "./App.css";
 import Item from "components/Item";
@@ -13,6 +14,8 @@ export default class App extends React.Component {
   noState ={
     favItems: [],
   };
+
+  hideFav = true;
 
   handleItemClick = (item) => {
 
@@ -48,6 +51,11 @@ export default class App extends React.Component {
 
   }
 
+  hideFavorite = () => {
+    this.hideFav = !this.hideFav;
+    this.setState({  });
+  };
+
   render(){
     const{favItems}=this.state;
 
@@ -57,6 +65,13 @@ export default class App extends React.Component {
         <p className="text-center text-secondary text-sm font-italic">
           (This is a <strong>class-based</strong> application)
         </p>
+        <div className="text-center">
+         <label className="switch">
+              <input type="checkbox" onClick={this.hideFavorite} />
+              <span className="slider round"></span>
+            </label>
+            <span> <strong>Show Favorites</strong></span>
+        </div>
         <div className="container pt-3">
           <div className="row">
             <div className="col-sm">
@@ -66,24 +81,26 @@ export default class App extends React.Component {
                 onItemClick={this.handleItemClickList}
               />
             </div>
-            <div className="col-sm">
-              <div className=""></div>
-
-<List
-              title="My Favorites"
-              items={favItems}
-              onItemClick={this.handleItemClick}
-              
-              />
-               {favItems.length > 0
+            {this.hideFav === false &&
+                <div className = "col-sm">
+                    {favItems.length > 0 &&
+                        <div className = "col-sm">
+                            <List 
+                                title = "My Favorite"
+                                items = {favItems}
+                                onItemClick = {this.handleItemClick}
+                            />
+                            {favItems.length > 0
         ? <button type="button" class="btn btn-danger" onClick={this.deleteItemClick}>Delete All</button>
         : null
-      }
-                 
-        
-              
-            </div>
-            
+      }        
+                        </div>
+                    }
+                    {favItems.length <= 0 &&
+                        <Emptystate />
+                    }
+                </div>
+            }
           </div>
         </div>
       </div>
