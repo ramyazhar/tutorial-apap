@@ -18,30 +18,20 @@ export default class App extends React.Component {
   hideFav = true;
 
   handleItemClick = (item) => {
-
     const newItems = [ ... this.state.favItems];
     const newItem = { ... item};
-
     const targetInd = newItems.findIndex((it) => it.id == newItem.id);
-
     if (targetInd < 0) newItems.push(newItem);
     else newItems.splice(targetInd,1);
-
     this.setState({ favItems: newItems});
-
   }
 
   handleItemClickList = (item) => {
-
     const newItems = [ ... this.state.favItems];
     const newItem = { ... item};
-
     const targetInd = newItems.findIndex((it) => it.id == newItem.id);
-
     if (targetInd < 0) newItems.push(newItem);
-
     this.setState({ favItems: newItems});
-
   }
 
   deleteItemClick = () => {
