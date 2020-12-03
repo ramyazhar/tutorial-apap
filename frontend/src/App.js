@@ -9,6 +9,11 @@ export default class App extends React.Component {
   state = {
     favItems: [],
   };
+
+  noState ={
+    favItems: [],
+  };
+
   handleItemClick = (item) => {
 
     const newItems = [ ... this.state.favItems];
@@ -20,6 +25,13 @@ export default class App extends React.Component {
     else newItems.splice(targetInd,1);
 
     this.setState({ favItems: newItems});
+
+  }
+
+  deleteItemClick = () => {
+
+
+    this.setState(this.noState);
 
   }
   // render(){
@@ -64,12 +76,21 @@ export default class App extends React.Component {
               />
             </div>
             <div className="col-sm">
-              <List
+         {
+           favItems.length > 0 &&
+           <div className = "col-sm">
+<List
               title="My Favorites"
               items={favItems}
               onItemClick={this.handleItemClick}
+              
               />
+                 <button type="button" class="btn btn-danger" onClick={this.deleteItemClick}>Delete All</button>
+             </div>
+         }
+              
             </div>
+            
           </div>
         </div>
       </div>
