@@ -21,12 +21,16 @@ export default function Item(props) {
                     <div className="d-flex justify-content-between align-items-center">
                         <h5 className="mb-1 font-weight-bold">
                             {judul} ({tahun})
-                            {/* <input
+                            {
+                                checked == true ?  
+                                <input
                                 type="checkbox"
                                 className="ml-2"
                                 checked={checked}
                                 onChange={handleChange} 
-                            /> */}
+                            /> : null
+                            }
+                           
                         </h5>
                     </div>
                     <p className="font-weight-bold mb-0 text-md">Rating: {rating}/10</p>
