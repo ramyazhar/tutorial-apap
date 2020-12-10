@@ -190,3 +190,64 @@ Pada tutorial-6 ini saya belajar bagaimana cara membuat user, dengan username da
 - universally unique identifier (UUID) adalah digunakan untuk mengidentifikasi secara unik beberapa objek atau entitas di Internet. Bergantung pada mekanisme spesifik yang digunakan, UUID dijamin berbeda atau, paling tidak, sangat mungkin berbeda dari UUID lain yang ada. UUID digunakan untuk meningkatkan keamanan data pengguna dikarenakan id pengguna akan digenerate secara unik dengan hashing sebanyak 32 karakter secara acak sehingga id pengguna aman dan tidak mudah untuk diretas. 
 4. **Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserRoleServiceImpl.java?**
 - UserDetailsService adalah antarmuka inti dalam kerangka kerja Spring Security, yang digunakan untuk mengambil informasi otentikasi dan otorisasi pengguna. Ini memiliki metode baca-saja tunggal bernama loadUserByUsername() yang mencari pengguna berdasarkan nama pengguna.
+
+---
+
+## Tutorial 7
+### Pertanyaan
+**1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi
+dari apa yang Anda jelaskan.**  
+
+###### Soal 1
+Hilangkan checkbox pada item di list bagian kiri. Bagian dari code yang menampilkan button adalah component Item.js. Pada nomor ini saya menggunakan conditional di Item.js. checked adalah variable yang menjadi pembeda dari favorite items dan menu. Sehingga saya menggunakan conditional pada Item.js seperti berikut.
+https://ibb.co/mDydCKB
+
+###### Soal 2
+Pada kali ini saya membuat sebuah button yang mampu menghapus seluruh isi list favorite dengan cara membuat sebuah 
+fungsi di app.js yang mengubah state dari favItems menjadi kosong. Code yang saya buat adalah:
+  deleteItemClick = () => {
+    this.setState({favItems: []});
+  }
+Selanjutnya saya membuat button yang memanggil fungsi ini. Code yang dibuat adalah:
+<button onClick={this.deleteItemClick}>Delete</button>
+Untuk Tombol hanya akan muncul apabila sudah ada item di dalam list favorites, dapat dilihat source code nya pada bagian
+nomor 5 dengan cara *Ternary Display*. Hasil dari kode yang sudah dibuat adalah:
+- Sebelum dihapus
+![image](https://user-images.githubusercontent.com/60350747/101043904-5ff04f00-35b1-11eb-8c06-b2bfa9e48a9d.png)
+- Sesudah dihapus
+![image](https://user-images.githubusercontent.com/60350747/101043971-73031f00-35b1-11eb-997c-6ccf3e4578fe.png)
+https://ibb.co/MMPgsct
+
+###### Soal 3
+Buatlah mekanisme agar bagian kiri hanya melakukan operasi add Operasi yang membuat item di remove dari favorites items adalah "newItems.splice(targetInd, 1);". sehingga untuk bagian kiri, saya membuat fungsi tanpa "newItems.splice(targetInd, 1);". Sekarang yang kiri hanya dapat melakukan operasi add. Lalu fungsi nya dipanggil pada html sesuai kebutuhan dengan onClick.
+https://ibb.co/X8PSk7w
+
+###### Soal 4
+Buatlah toggle dimana jika toggle ON, maka My Favorite ditampilkan. Pertama saya membuat toggle di App.js yang memanggil fungsi hideFavorite saat onClick. Saya juga memuat boolean hideFav yang berarti favorite disembunyikan atau tidak. Setelah itu, saya membuat fungsi yang mengubah nilai dari hideFav sehingga mengubah disembunyikan atau tidak. Selain itu, saya juga menambahkan "this.setState({ });" untuk memberi tahu React bahwa komponen ini perlu dirender ulang dengan state yang diperbarui. Setelah itu, pada render return nya, saya menambahkna conditional apakah hideFav true atau false untuk memilih ditampilkannya favorites atau apa tidak.
+https://ibb.co/StFZcz8
+
+###### Soal 5
+ika daftar favorit kosong, maka tampilkan empty state. Saya membuat component baru yaitu EmptyState yang berisi seperti html yang memberi tahu favorite kosong (seperti di gambar). Jika favorite items kosong artinya panjang array dari favItems akan 0. maka saya menambahkan conditional yang mengecek apakah favItems.length = 0, jika iya akan menampilkan EmptyState.
+https://ibb.co/DgxHBzK
+
+**2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan props?**  
+Menurut saya, state adalah sebuah data private dari sebuah component yang hanya bisa tersedia untuk component tersebut
+tanpa bisa diakses dari component lain. Sedangkankan props adalah singkatan dari property yang merupakan sebuah
+parameter dari fungsi component. Bentuk props sangat mirip seperti attribute pada tag HTML. Sumber: https://medium.com/coderupa/react-prop-state-apa-bedanya-7ee61df8257f  
+
+**3. Apa keuntungan menggunakan component (e.g. List, Item) di React? Berikan contohnya!**  
+Keuntungan menggunakan component di React adalah kita bisa membuat suatu code yang bisa direuse berkali-kali sesuai dengan
+kebutuhan dan kita tinggal panggil saja misalnya di bagian App.js. Contohnya adalah pada tutorial kali ini dimana ada
+component List dan Item yang bisa dipanggil ulang untuk menampilkan seluruh film yang ada di file json sekaligus menampilkan
+seluruh hasil favorit. Kode ini bisa kita panggil berkali-kali sesuai denga kebutuhan kita.  
+
+**4. Menurut kamu, apa saja kelebihan menggunakan React dalam pengembangan web?**  
+Kelebihan dalam menggunakan React adalah komponen yang dapat digunakan kembali seperti dari nomor 3, membuat aplikasi web
+dinamis menjadi lebih mudah dikarenakan React dibuat menggunakan Javascript yang terkenal dengan animasi serta desain yang
+baik dalam website, dan mampu memanfaatkan Javascript Library untuk diimplementasikan ke dalam website.  
+
+**5. Menurut kamu, apa saja kekurangan menggunakan React dalam pengembangan web?**  
+Kekurangan dari React dalam pengembangan web adalah hanya mendukung website yang baru-baru saja seperti Google Chrome
+dan Mozila Firefox. Untuk browser lama, tidak akan bisa disupport oleh React. Selanjutnya juga dokumentasi dari ReactJS
+kurang lengkap dan sistematis sehingga bagi seorang developer yang baru belajar (terutama saya yang tidak suka Javascript) 
+cukup sulit untuk fasih menggunakan ReactJs.
