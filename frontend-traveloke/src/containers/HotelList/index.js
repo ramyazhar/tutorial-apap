@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import Hotel from "../../components/Hotel";
 import Button from "../../components/Button";
 import Modal from "../../components/Modal";
@@ -11,9 +12,15 @@ constructor(props) {
 super(props);
 this.state = {
     hotels: [],
+    // hotelsResult: [],
+    // setHotelsResult: [],
     isLoading: false,
     isCreate: false,
     isEdit: false,
+    search: '',
+    // setSearchTerm: "",
+    // searchText: "",
+    // allhotels : [],
     namaHotel: "",
     alamat: "",
     nomorTelepon: "",
@@ -28,11 +35,21 @@ this.state = {
     this.handleSubmitEditHotel = this.handleSubmitEditHotel.bind(this);
 }
 
+    updateSearch(event){
+        this.setState(
+            {
+                search: event.target.value.substr(0,20)
+            }
+        );
+    }
+
     handleClickLoading() {
         const currentLoading = this.state.isLoading;
         this.setState({ isLoading: !currentLoading });
         console.log(this.state.isLoading);
         }
+
+    
         handleAddHotel() {
             this.setState({ isCreate: true });
             }
@@ -56,7 +73,9 @@ this.state = {
                 nomorTelepon: hotel.nomorTelepon,
                 });
             }
+
         
+
         componentDidMount() {
             this.loadData();
             }
@@ -121,31 +140,26 @@ this.state = {
                     }
                     }
                     
-
+                    
             
-            
-    // shouldComponentUpdate(nextProps, nextState) {
-    // console.log("shouldComponentUpdate()");
-    // }
-//     render() {
-//     // console.log("render()");
-//     return (
-//     <div>
-//     <h1>All Hotel</h1>
-//     <p>Hotel 1, 2, 3, dst</p>
-//     <button onClick={this.handleClickLoading}>Change State</button>
-//     </div>
-// );
-// }
+   
 render() {
+    let filteredHotel = this.state.hotels.filter(
+        (hotel) => {
+            return hotel.namaHotel.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+        }
+    );
     return (
     <div className={classes.hotelList}>
     <h1 className={classes.title}>All Hotels</h1>
     <Button onClick={this.handleAddHotel} variant="primary">
 Add Hotel
 </Button>
+<input type="text ml" 
+value={this.state.search}
+onChange={this.updateSearch.bind(this)}/>
     <div>
-    {this.state.hotels.map((hotel) => (
+    {filteredHotel.map((hotel) => (
     <Hotel
     key={hotel.id}
     id={hotel.id}
