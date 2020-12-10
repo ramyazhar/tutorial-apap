@@ -80,7 +80,11 @@ this.state = {
             };
             await APIConfig.post("/hotel", data);
             this.loadData();
-            
+            this.setState({
+                namaHotel: '',
+                alamat: '',
+                nomorTelepon: ''
+              });
             } catch (error) {
             alert("Oops terjadi masalah pada server");
             console.log(error);
