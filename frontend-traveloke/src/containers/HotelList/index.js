@@ -12,15 +12,10 @@ constructor(props) {
 super(props);
 this.state = {
     hotels: [],
-    // hotelsResult: [],
-    // setHotelsResult: [],
     isLoading: false,
     isCreate: false,
     isEdit: false,
     search: '',
-    // setSearchTerm: "",
-    // searchText: "",
-    // allhotels : [],
     namaHotel: "",
     alamat: "",
     nomorTelepon: "",
@@ -83,6 +78,7 @@ this.state = {
             try {
             const { data } = await APIConfig.get("/hotels");
             this.setState({ hotels: data });
+            console.log(data)
             } catch (error) {
             alert("Oops terjadi masalah pada server");
             console.log(error);
@@ -155,9 +151,14 @@ render() {
     <Button onClick={this.handleAddHotel} variant="primary">
 Add Hotel
 </Button>
-<input type="text ml" 
+<div>
+<div>
+    Cari Hotel
+</div>
+<input type="text " 
 value={this.state.search}
 onChange={this.updateSearch.bind(this)}/>
+</div>
     <div>
     {filteredHotel.map((hotel) => (
     <Hotel
@@ -166,6 +167,7 @@ onChange={this.updateSearch.bind(this)}/>
     namaHotel={hotel.namaHotel}
     alamat={hotel.alamat}
     nomorTelepon={hotel.nomorTelepon}
+    listKamar={hotel.listKamar}
     handleEdit={() => this.handleEditHotel(hotel)}
     handleDelete={() => this.handleDeleteHotel(hotel.id)}
     />
