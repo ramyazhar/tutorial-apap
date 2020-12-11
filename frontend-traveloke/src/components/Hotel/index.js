@@ -21,7 +21,7 @@ return (
  {
      listKamar.length !== 0 ? 
      listKamar.map((obj) => {
-        return ( <span key={`${obj.namaKamar}`} style={{ marginLeft: '.5rem', borderRadius:'20px 20px 20px 20px',  background:'#3C50C2', color:'white'}} >
+        return ( <span key={`${obj.id}`} style={{ marginLeft: '.5rem', borderRadius:'20px 20px 20px 20px',  background:'#3C50C2', color:'white'}} >
              &nbsp;&nbsp;&nbsp;<strong>{obj.namaKamar} ({obj.kapasitasKamar})</strong>&nbsp;&nbsp;
      <span>{'  '}</span>
          <span>  </span>
