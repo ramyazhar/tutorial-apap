@@ -251,3 +251,35 @@ Kekurangan dari React dalam pengembangan web adalah hanya mendukung website yang
 dan Mozila Firefox. Untuk browser lama, tidak akan bisa disupport oleh React. Selanjutnya juga dokumentasi dari ReactJS
 kurang lengkap dan sistematis sehingga bagi seorang developer yang baru belajar (terutama saya yang tidak suka Javascript) 
 cukup sulit untuk fasih menggunakan ReactJs.
+
+
+---
+
+## Tutorial 8
+### Pertanyaan
+**1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian melakukan langkah - langkah tersebut?.**
+setelah melakukan this.loadData() , saya mengosongkan statenya kembali dengan cara
+      this.setState({
+        namaHotel: "",
+        alamat: "",
+        nomorTelepon: "",
+      })
+agar ketika membuka modalnya, fieldnya sudah kososng
+
+
+
+**2. Jelaskan fungsi dari async dan await!**  
+Menurut saya, await digunakan untuk menunggu Janji. Ini dapat digunakan di dalam blok Async saja. await membuat JavaScript menunggu sampai hasil dikembalikan. Perlu dicatat bahwa itu hanya membuat blok fungsi async menunggu dan bukan keseluruhan eksekusi program.
+
+**3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 7 pada Component Lifecycle pada pertanyaan ini.**  
+
+https://docs.google.com/document/d/184jgkFoui_V-0PgQP838LTGrxoxU4957BQxV2Wa61L4/edit?usp=sharing  
+
+**4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate, componentDidUpdate componentWillReceiveProps, componentWillUnmount.**  
+
+
+componentDidMount, fungsi dipanggil ketika komponen selesai dibuat, usecase yang biasa menggunakannya adalah ketika ingin mengetahui suatu komponen selesai dibuat.
+shouldComponentUpdate, fungsi dipanggil ketika property atau state dari komponen telah berubah , usecase yang biasa menggunakannya adalah ketika ingin mengetahui perubahan porps/state dari komponen terkait
+componentDidUpdate , fungsi dipanggil ketika sebelum atatu sesudah komponen di render kembali , usecase yang biasa menggunakannya adalah ketika ada pekerjaan manual dari luar react yang mengupdate si component
+componentWillReceiveProps, fungsi dipanggil ketika dipanggil sebelum komponen menerima props yang nilainya telah berubah , usecase yang biasa menggunakannya adalah ketika mengubah si component
+componentWillUnmount, fungsi dipanggil ketika ingin menghancurkan/menghapus/menyingkirkan komponen , usecase yang biasa menggunakannya adalah ketika ingin unsubscribe
