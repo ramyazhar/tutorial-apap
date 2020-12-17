@@ -1,0 +1,15 @@
+.hotel {
+    border-radius: 4px;
+    background-color: white;
+    border: 1px solid grey;
+    padding: 16px;
+margin: 20px 0;
+box-sizing: border-box;
+}
+
+.card {
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 1px;
+    text-align: center;
+    background-color: #00FFFF;
+  }
